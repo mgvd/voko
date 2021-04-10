@@ -1,6 +1,8 @@
 from django.conf.urls import url
 from ordering import views
 
+app_name = 'ordering'
+
 urlpatterns = (
     url(r'^supplier/(?P<pk>[0-9]+)/$', views.SupplierView.as_view(),
         name="view_supplier"),

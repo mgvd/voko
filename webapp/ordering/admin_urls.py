@@ -7,6 +7,8 @@ from .admin_views import OrderAdminMain, OrderAdminOrderLists, \
     CreateRealProducts, ProductAdminMain, \
     RedirectToMailingView, StockAdminView, ProductStockApiView, ProductApiView
 
+app_name = 'ordering'
+
 urlpatterns = (
     url(r'^rounds/$', OrderAdminMain.as_view(), name="orderadmin_main"),
     url(r'^suppliers/$', ProductAdminMain.as_view(), name="productadmin_main"),
