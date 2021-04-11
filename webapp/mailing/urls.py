@@ -1,8 +1,6 @@
 from django.conf.urls import url
 from mailing.views import PreviewMailView, ChooseTemplateView, SendMailView
 
-app_name = 'mailing'
-
 urlpatterns = (
     url(r'^sendmail/$',
         ChooseTemplateView.as_view(),

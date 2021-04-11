@@ -1,8 +1,6 @@
 from django.conf.urls import url
 from api import views
 
-app_name = 'api'
-
 urlpatterns = (
     url(r'^orders(.json)?$', views.OrdersJSONView.as_view()),
     url(r'^orders.csv$', views.OrdersCSVView.as_view()),
