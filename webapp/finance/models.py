@@ -55,7 +55,7 @@ class BalanceManager(models.Manager):
       * vokouser.balance.credit()
       * vokouser.balance.debit()
     """
-    use_for_related_fields = True
+    # use_for_related_fields = True
 
     def _credit(self):
         credit_objs = self.get_queryset().filter(type="CR")
@@ -85,6 +85,12 @@ class Balance(TimeStampedModel):
     gas compensation, order correction, etc.
     A transaction is either debit (DR) or credit (CR).
     """
+
+    objects = BalanceManager()
+
+    class Meta:
+        base_manager_name = 'balance_manager'
+
     TYPES = (
         ("CR", "Credit"),
         ("DR", "Debit"),
@@ -105,8 +111,6 @@ class Balance(TimeStampedModel):
             raise ValueError("Amount may not be zero or negative. "
                              "Amount was: %s" % self.amount)
         super(Balance, self).save(**kwargs)
-
-    objects = BalanceManager()
 
     # The following functions are used for csv export
 

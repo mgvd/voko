@@ -369,7 +369,6 @@ class OrderRound(TimeStampedModel):
 
 
 class OrderManager(models.Manager):
-    use_for_related_fields = True
 
     def get_current_order(self):
         """
@@ -401,11 +400,12 @@ class OrderManager(models.Manager):
 
 
 class Order(TimeStampedModel):
+
+    objects = OrderManager()
     class Meta:
         verbose_name = "Bestelling"
         verbose_name_plural = "Bestellingen"
-
-    objects = OrderManager()
+        base_manager_name = 'order_manager'
 
     products = models.ManyToManyField("Product", through="OrderProduct")
     order_round = models.ForeignKey("OrderRound",
@@ -611,11 +611,13 @@ class OrderProductCorrection(TimeStampedModel):
     Used to register (and compensate for) non/partly delivered products.
     Creates Balance object upon creation.
     """
-    objects = CorrectionManager()
+
+    correction_manager = CorrectionManager()
 
     class Meta:
         verbose_name = "Productbestelling-correctie"
         verbose_name_plural = "Productbestelling-correcties"
+        base_manager_name = 'correction_manager'
 
     order_product = models.OneToOneField("OrderProduct",
                                          related_name="correction",
