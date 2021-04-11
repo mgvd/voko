@@ -89,7 +89,7 @@ class Balance(TimeStampedModel):
     objects = BalanceManager()
 
     class Meta:
-        base_manager_name = 'balance_manager'
+        base_manager_name = 'objects'
 
     TYPES = (
         ("CR", "Credit"),

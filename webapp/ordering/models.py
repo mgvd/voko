@@ -405,7 +405,7 @@ class Order(TimeStampedModel):
     class Meta:
         verbose_name = "Bestelling"
         verbose_name_plural = "Bestellingen"
-        base_manager_name = 'order_manager'
+        base_manager_name = 'objects'
 
     products = models.ManyToManyField("Product", through="OrderProduct")
     order_round = models.ForeignKey("OrderRound",
@@ -612,12 +612,12 @@ class OrderProductCorrection(TimeStampedModel):
     Creates Balance object upon creation.
     """
 
-    correction_manager = CorrectionManager()
+    objects = CorrectionManager()
 
     class Meta:
         verbose_name = "Productbestelling-correctie"
         verbose_name_plural = "Productbestelling-correcties"
-        base_manager_name = 'correction_manager'
+        base_manager_name = 'objects'
 
     order_product = models.OneToOneField("OrderProduct",
                                          related_name="correction",
