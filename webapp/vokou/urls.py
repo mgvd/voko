@@ -14,7 +14,7 @@ from vokou.views import HomeView, PrivacyStatementView, RegulationsView
 
 urlpatterns = [
     url(r'^admin/mailing/', include(mailing.urls)),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include(accounts.urls)),
     url(r'^ordering/admin/', include(ordering.admin_urls)),
     url(r'^ordering/', include(ordering.urls)),
